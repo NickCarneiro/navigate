@@ -30,7 +30,7 @@ def home():
                            destination=destination)
 
 
-# returns a dict of dicts
+# returns a list of dicts
 def scrape_commute_times(destination):
 
     if destination == 'work':
