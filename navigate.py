@@ -7,9 +7,11 @@ from pyquery import PyQuery as pq
 
 app = Flask(__name__)
 
+#unused endpoint that returns route data as json
 @app.route('/routes')
 def routes():
-    routes = scrape_commute_times()
+    destination = request.args.get('to', 'work')
+    routes = scrape_commute_times(destination)
     json_response = json.dumps(routes, indent=4)
     return json_response
 
