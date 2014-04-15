@@ -1,3 +1,3 @@
 # Navigate - choose your route wisely
 
-I want to receive a text twice a day telling me which route to take to/from work.p
+Mobile friendly page that displays travel time for multiple routes to/from work.
