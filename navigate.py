@@ -10,7 +10,7 @@ app = Flask(__name__)
 def hello():
     routes = scrape_commute_times()
     print routes
-    json_response = json.dumps(routes)
+    json_response = json.dumps(routes, indent=4)
     return json_response
 
 
@@ -24,16 +24,26 @@ def scrape_commute_times():
     usual_times = d('.dir-altroute > div > div.altroute-rcol.altroute-info > span:nth-child(2)')
     current_times = d('.dir-altroute > div > div.altroute-rcol.altroute-aux > span')
 
-    routes = {}
+    routes = []
     i = 0
     for route_name in route_names:
-        routes[route_name.text] = {
+        route = {
+            'route_name': route_name.text,
             'distance': distances[i].text,
             'usual_time': usual_times[i].text,
             'current_time': current_times[i].text.replace('In current traffic: ', '').strip()
         }
+        routes.append(route)
         i += 1
+    routes = sorted(routes, key=numberize_time)
     return routes
+
+
+def numberize_time(route):
+    time = route['usual_time']
+    numerals = time.replace('mins', '')
+    minutes_int = int(numerals)
+    return minutes_int
 
 if __name__ == "__main__":
     app.debug = True
