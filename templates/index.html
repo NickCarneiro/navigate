@@ -23,7 +23,7 @@
 {% for route in routes %}
 <div class="route">
     <h1>{{ route.route_name }}</h1>
-    <span>{{ route.current_time }}</span>
+    <h3 class="inline-header">{{ route.current_time }}</h3>
     -
     <span>{{ route.distance }}</span>
 
@@ -38,6 +38,10 @@
     }
     .route {
         width: 100%;
+    }
+
+    .inline-header {
+        display: inline;
     }
 </style>
 </html>
