@@ -17,7 +17,7 @@ def routes():
 
 @app.route('/')
 def home():
-    time_str = datetime.datetime.now().strftime('%A %H:%M %p')
+    time_str = datetime.datetime.now().strftime('%A %I:%M %p')
     destination = request.args.get('to', 'work')
     routes = scrape_commute_times(destination)
     if destination == 'work':
